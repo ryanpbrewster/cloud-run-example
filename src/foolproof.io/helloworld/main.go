@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"sync/atomic"
 	"time"
 )
@@ -28,7 +29,11 @@ func delayHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func inspectHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "%d open connections!\n", OPEN_CONNECTIONS)
+	hostname, err := os.Hostname()
+	if err != nil {
+		hostname = "UNKNOWN"
+	}
+	fmt.Fprintf(w, "%d open connections on %s!\n", OPEN_CONNECTIONS, hostname)
 }
 
 func main() {
