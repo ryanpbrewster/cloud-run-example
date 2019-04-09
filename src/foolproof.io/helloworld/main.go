@@ -13,9 +13,9 @@ const ADDRESS = ":80"
 var OPEN_CONNECTIONS int32 = 0
 
 func delayHandler(w http.ResponseWriter, r *http.Request) {
-	count := atomic.AddInt32(&OPEN_CONNECTIONS, 1)
+	log.Printf("%d connections", atomic.AddInt32(&OPEN_CONNECTIONS, 1))
 	defer func() {
-		atomic.AddInt32(&OPEN_CONNECTIONS, -1)
+		log.Printf("%d connections", atomic.AddInt32(&OPEN_CONNECTIONS, -1))
 	}()
 
 	values, ok := r.URL.Query()["delay"]
@@ -24,7 +24,7 @@ func delayHandler(w http.ResponseWriter, r *http.Request) {
 			time.Sleep(dur)
 		}
 	}
-	fmt.Fprintf(w, "When you joined, you were one of %d clients!\n", count)
+	fmt.Fprintf(w, "Hello, World!\n")
 }
 
 func main() {
