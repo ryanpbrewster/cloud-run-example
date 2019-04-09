@@ -1,1 +1,1 @@
-sudo docker build . -t gcr.io/foolproof-io/helloworld 
+sudo docker build . -t gcr.io/foolproof-io/helloworld
