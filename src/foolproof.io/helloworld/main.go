@@ -27,8 +27,13 @@ func delayHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello, World!\n")
 }
 
+func inspectHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "%d open connections!\n", OPEN_CONNECTIONS)
+}
+
 func main() {
 	log.Printf("listening on %s...", ADDRESS)
 	http.HandleFunc("/hello", delayHandler)
+	http.HandleFunc("/inspect", inspectHandler)
 	log.Fatal(http.ListenAndServe(ADDRESS, nil))
 }
