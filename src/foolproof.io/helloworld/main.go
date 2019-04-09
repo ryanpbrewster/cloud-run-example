@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-const ADDRESS = "localhost:8080"
+const ADDRESS = ":80"
 
 var OPEN_CONNECTIONS int32 = 0
 
